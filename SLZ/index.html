@@ -16,11 +16,22 @@
         <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
         <link href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Open+Sans&family=Raleway&display=swap' rel='stylesheet' type='text/css'/>
         <style>
-			
+			body {
+				font-family: Avenir Next;
+				margin: 25px;
+			}
         	.col-12 {
         		margin: 20px;
         	}
 			#cards, .spots {
+				display: flex;
+  				flex-wrap: wrap;
+				justify-content: center;
+				border: 0px solid;
+				border-color: black;
+				margin: 10px;
+			}
+			#answer-cards, .drop-spots {
 				display: flex;
   				flex-wrap: wrap;
 				justify-content: center;
@@ -42,7 +53,7 @@
 				text-align: center;
 				background: white; 
 			}
-			.draggable { 
+			#draggable, .draggable { 
 				margin: 1em;
 				border: 3px solid;
 				padding: 1em;
@@ -55,7 +66,7 @@
 			}
 			.droppable {
 				margin: 1em;
-				border: 0px solid;
+				border: 0.5px solid;
 				padding: 1em;
 				width: 90px; 
 				height: 120px; 
@@ -64,6 +75,7 @@
 				text-align: center;
 				background: white; 
 			}
+			
 			button {
   				background-color: #72CDF4;
  				border: 2px solid;
@@ -147,7 +159,7 @@
 			  		revert: 'invalid',
 			  		snap: '.droppable',
 			  		snapMode: 'inner',
-			  		snapTolerance: '10'
+			  		snapTolerance: 20
 			  	} );
 			  	$('.droppable').droppable( {
 			  		accept: '.draggable',
@@ -162,6 +174,15 @@
 				var draggable = ui.draggable;
 				// alert( 'The "' + draggable.attr('id') +'" card was dropped onto me!');
 			}
+			
+			//attempted reset button which tracks the original location and reverts to that location on button click
+			// $("#btnReset").click(function() {
+// 			    $("card-corn, card-dog").animate({
+// 			        "left": $(".draggable").data("left"),
+// 			        "top": $(".draggable").data("top")
+// 			    });
+// 			});
+// 			$(".card").data("left",$(".card").position().left).data("top",  $(".card").position().top);
 		</script>
     </head>
     <body>
@@ -258,15 +279,14 @@
 									<img src = "img/snow.png" style="width:70px;margin:5px 0px 0px 0px"> <br>
 								</div>
 							</div>
-							<div class ="clear"></div>
-							<div class ="cards">
-								<div class ="spots" id = "Melody #1">
+							<div id = "cards">
+								<div class= "drop-spots" id ="Melody #1">
 									<h4> MELODY #1 </h4>
 									<div class="droppable"> </div>
 									<div class="droppable"> </div>
 									<div class="droppable"> </div>
 								</div>
-								<div class="spots" id = "Melody #2">
+								<div class="drop-spots" id = "Melody #2">
 									<h4> MELODY #2 </h4>
 									<div class="droppable"> </div>
 									<div class="droppable"> </div>
@@ -279,6 +299,8 @@
 								<label for="answercheck1" id="answerlabel1">Click here to show the answer!</label>
 								<p class="spoiler" id="answerp1"> The words <em>beku'</em> "dog", <em>xhua'</em> "corn", and <em>xhile'</em> "sheep", all have the same melody, that starts high and ends low. The words <em>beye'</em> "snow", <em>lage'</em> "leaf", and <em>ya'ado</em> "mountain" all have a different melody, that stays flat and low.</p>
 							</div>
+							
+							<!-- <button id = "btnReset">Click here to restart</button> -->
 							<div class="answer">
 								<input type="checkbox" name="restart1" id="restartcheck1">
 								<label for="restartcheck1" id="restartlabel1">Click here to restart</label>
@@ -318,14 +340,15 @@
 									<img src = "img/lime.png" style="width:65px;margin:5px 0px 0px 0px"> <br>
 								</div>
 							</div>
-							<div class ="cards">
-								<div class ="spots" id = "Rnd1 Melody">
-									<h4> Round 1 Melody </h4>
+							<div id ="cards">
+								<div class ="drop-spots" id = "Rnd1 Melody">
+									<h4> Round 1 Melodies </h4>
+									<div class="droppable"> </div>
 									<div class="droppable"> </div>
 									<div class="droppable"> </div>
 									<div class="droppable"> </div>
 								</div>
-								<div class="spots" id = "New Melody">
+								<div class="drop-spots" id = "New Melody">
 									<h4> New Melody </h4>
 									<div class="droppable"> </div>
 									<div class="droppable"> </div>
