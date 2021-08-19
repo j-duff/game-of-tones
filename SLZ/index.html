@@ -168,6 +168,20 @@
     			$('#cards').droppable( {
 			  		accept: '.draggable'
     			} );
+				
+				$("#btnReset1").click(function() {
+				    $("#r1 .draggable").animate({
+						"left": 0,
+						"top": 0
+				    });
+				});
+				
+				$("#btnReset2").click(function() {
+				    $("#r2 .draggable").animate({
+						"left": 0,
+						"top": 0
+				    });
+				});
 			}
 
 			function handleDropEvent( event, ui ) {
@@ -180,9 +194,10 @@
 // 			    $("card-corn, card-dog").animate({
 // 			        "left": $(".draggable").data("left"),
 // 			        "top": $(".draggable").data("top")
+//
 // 			    });
 // 			});
-// 			$(".card").data("left",$(".card").position().left).data("top",  $(".card").position().top);
+// 			$(".draggable").data("left",$(".draggable").position().left).data("top",  $(".draggable").position().top);
 		</script>
     </head>
     <body>
@@ -300,11 +315,11 @@
 								<p class="spoiler" id="answerp1"> The words <em>beku'</em> "dog", <em>xhua'</em> "corn", and <em>xhile'</em> "sheep", all have the same melody, that starts high and ends low. The words <em>beye'</em> "snow", <em>lage'</em> "leaf", and <em>ya'ado</em> "mountain" all have a different melody, that stays flat and low.</p>
 							</div>
 							
-							<!-- <button id = "btnReset">Click here to restart</button> -->
-							<div class="answer">
+							<button id = "btnReset1">Click here to restart</button>
+							<!-- <div class="answer">
 								<input type="checkbox" name="restart1" id="restartcheck1">
 								<label for="restartcheck1" id="restartlabel1">Click here to restart</label>
-							</div>
+							</div> -->
 						</div>
 						<div class ="clear"></div>
 						<div id="r2">
@@ -361,6 +376,7 @@
 								<label for="answercheck2" id="answerlabel2">Click here to show the answer!</label>
 								<p class="spoiler" id="answerp2"> The words <em>yu'u</em> "house" and <em>biche'</em> "cricket" have the same falling melody as <em>beku'</em>, and <em>ya'a</em> "market" and <em>yi'inhdo'</em> "mole" have the same flat melody as <em>beye'</em>. The other three words (<em>duah</em> "agave", <em>yixu'</em> "avocado", and <em>yu'u</em> "lime (cal)") have the new melody, which starts low and ends high. <br> Did you notice that even though the words for house and lime are both spelled the same, you can tell them apart by their different melodies?</p>
 							</div>
+							<button id = "btnReset2">Click here to restart</button>
 						</div>
 						<div class ="clear"></div>
 						<div id="end">
