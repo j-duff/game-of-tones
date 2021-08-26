@@ -134,17 +134,7 @@
 				font-size: 1em;
 				opacity: 1;
 			}
-			#restartcheck1:checked ~ #restartp1 {
-				height: auto;
-				font-size: 1em;
-				opacity: 1;
-			}
-
-			#restartcheck2:checked ~ #restartp2 {
-				height: auto;
-				font-size: 1em;
-				opacity: 1;
-			}
+			
 			h4 {margin: 10px;}
 			
 		</style>
@@ -182,11 +172,25 @@
 						"top": 0
 				    });
 				});
+				
+				$("btnCheck1").click(function(){
+					var id_drag_mel, id_drop_mel;
+					
+					id_drag_mel = $("draggable").data("ans");
+					id_drop_mel = $("droppable").data("ans");
+					
+					if (id_drag_mel == id_drop_mel) {
+						console.log("Correct")
+					}
+					else {
+						console.log("Incorrect")
+					}
+				});
 			}
 
 			function handleDropEvent( event, ui ) {
 				var draggable = ui.draggable;
-				// alert( 'The "' + draggable.attr('id') +'" card was dropped onto me!');
+				//alert( 'The "' + draggable.attr('id') +'" card was dropped onto me!');
 			}
 			
 			//attempted reset button which tracks the original location and reverts to that location on button click
@@ -197,7 +201,7 @@
 //
 // 			    });
 // 			});
-// 			$(".draggable").data("left",$(".draggable").position().left).data("top",  $(".draggable").position().top);
+//		$(".draggable").data("left",$(".draggable").position().left).data("top",  $(".draggable").position().top);
 		</script>
     </head>
     <body>
@@ -269,27 +273,27 @@
 							<h3>Round 1</h3>
 							<p>The six words below are examples of two different melodies. See if you can figure out which is which!</p>
 							<div id="cards">
-								<div class="draggable" id="card-corn"> 
+								<div class="draggable" id="card-corn" data-ans="fall"> 
 									<button onclick="document.getElementById('audio-corn').play()">xhua'</button> <br>
 									<img src = "img/corn.png" style="width:90px;margin:8px 0px 0px 0px"> <br>
 								</div>
-								<div class="draggable" id="card-dog"> 
+								<div class="draggable" id="card-dog" data-ans="fall"> 
 									<button onclick="document.getElementById('audio-dog').play()">beku'</button> <br>
 									<img src = "img/dog.png" style="width:90px;margin:8px 0px 0px 0px"> <br>
 								</div>
-								<div class="draggable" id="card-leaf"> 
+								<div class="draggable" id="card-leaf" data-ans="flat"> 
 									<button onclick="document.getElementById('audio-leaf').play()">lage'</button> <br>
 									<img src = "img/leaf.png" style="width:70px;margin:8px 0px 0px 0px"> <br>
 								</div>
-								<div class="draggable" id="card-mountain"> 
+								<div class="draggable" id="card-mountain" data-ans="flat"> 
 									<button onclick="document.getElementById('audio-mountain').play()">ya'ado</button> <br>
 									<img src = "img/mountain.png" style="width:100px;margin:12px 0px 0px 0px"> <br>
 								</div>
-								<div class="draggable" id="card-sheep"> 
+								<div class="draggable" id="card-sheep" data-ans="fall"> 
 									<button onclick="document.getElementById('audio-sheep').play()">xhile'</button> <br>
 									<img src = "img/sheep.png" style="width:80px;margin:8px 0px 0px 0px"> <br>
 								</div>
-								<div class="draggable" id="card-snow"> 
+								<div class="draggable" id="card-snow" data-ans="flat"> 
 									<button onclick="document.getElementById('audio-snow').play()">beye'</button> <br>
 									<img src = "img/snow.png" style="width:70px;margin:5px 0px 0px 0px"> <br>
 								</div>
@@ -297,15 +301,15 @@
 							<div id = "cards">
 								<div class= "drop-spots" id ="Melody #1">
 									<h4> MELODY #1 </h4>
-									<div class="droppable"> </div>
-									<div class="droppable"> </div>
-									<div class="droppable"> </div>
+									<div class="droppable" data-ans="fall"> </div>
+									<div class="droppable" data-ans="fall"> </div>
+									<div class="droppable" data-ans="fall"> </div>
 								</div>
 								<div class="drop-spots" id = "Melody #2">
 									<h4> MELODY #2 </h4>
-									<div class="droppable"> </div>
-									<div class="droppable"> </div>
-									<div class="droppable"> </div>
+									<div class="droppable" data-ans="flat"> </div>
+									<div class="droppable" data-ans="flat"> </div>
+									<div class="droppable" data-ans="flat"> </div>
 								</div>
 							</div>
 							<div class ="clear"></div>
@@ -316,6 +320,7 @@
 							</div>
 							
 							<button id = "btnReset1">Click here to restart</button>
+							<button id = "btnCheck1">Click here to check answer</button>
 							<!-- <div class="answer">
 								<input type="checkbox" name="restart1" id="restartcheck1">
 								<label for="restartcheck1" id="restartlabel1">Click here to restart</label>
