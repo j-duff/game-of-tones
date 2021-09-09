@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -129,6 +129,12 @@
 			.clear {
 				clear:both;
 				height:35px;
+			}
+			
+			#answercheck2:checked ~ #answerp2 {
+				height: auto;
+				font-size: 1em;
+				opacity: 1;
 			}
 			
 			h4 {margin: 10px;}
@@ -295,26 +301,23 @@
 						<audio id="audio-avocado" src="mp3/avocado.mp3"></audio>
 						<audio id="audio-chapulin" src="mp3/chapulin.mp3"></audio>
 						<div id="instruct">
-							<h2> Learn about tones in Santiago Laxopa Zapotec! </h2>
+							<!-- <h2> Learn about tones in Santiago Laxopa Zapotec! </h2>
 							<p> In Santiago Laxopa Zapotec, words have different melodies. For instance, in some words, the pitch will start high and end low, and in others, the pitch will stay low through the whole word.</p>
 							<p>On this page, you can play our "Game of Tones", where you can learn some Santiago Laxopa Zapotec words, and practice listening to their melodies.</p>
 							<p>To start, see if you can hear the difference between the two words below: <em>beku'</em> "dog" and <em>beye'</em> "snow". Click on the blue boxes to hear the words and listen to their melodies.</p>
 								<div id="cards">
-									<div class="card" id="card-dog"> 
+									<div class="card" id="card-dog">
 										<button onclick="document.getElementById('audio-dog').play()">beku'</button> <br>
 										<img src = "img/dog.png" style="width:90px;margin:8px 0px 0px 0px"> <br>
 									</div>
-									<div class="card" id="card-snow"> 
+									<div class="card" id="card-snow">
 										<button onclick="document.getElementById('audio-snow').play()">beye'</button> <br>
 										<img src = "img/snow.png" style="width:70px;margin:5px 0px 0px 0px"> <br>
 										</div>
 								</div>
 							<p>Can you hear how <em>beku'</em> starts high and falls, and <em>beye'</em> stays very flat? These are two of the melodies that words can have in Santiago Laxopa Zapotec.</p>
-							<p>Below, we'll give you some more words, and you can see if you can figure out which words have which melodies.</p>
-							
-							<a href="round1.html">Click Here to Continue</a>
+							<p>Below, we'll give you some more words, and you can see if you can figure out which words have which melodies.</p> -->
 						</div>
-						
 						<div id="r1">
 							<!-- <h3>Round 1</h3>
 							<p>The six words below are examples of two different melodies. See if you can figure out which is which!</p>
@@ -372,13 +375,9 @@
 							<button id = "btnReset1">Click here to restart</button>
 							<button id = "btnCheck1">Click here to check answer</button>
 							<button id = "testbtn">Test</button> -->
-							<!-- <div class="answer">
-								<input type="checkbox" name="restart1" id="restartcheck1">
-								<label for="restartcheck1" id="restartlabel1">Click here to restart</label>
-							</div> -->
 						</div>
 						<div id="r2">
-							<!-- <h3>Round 2</h3>
+							<h3>Round 2</h3>
 							<p>Now let's see some more words. Four of these words have the melodies that you just heard in Round 1, but three of them have a new melody. See if you can hear which words have the new melody.</p>
 							<div id="cards">
 								<div class="draggable" id="card-chapulin" data-ans="fall" data-loc="">
@@ -438,11 +437,12 @@
 								<p class="spoiler" id="answerp2"> The words <em>yu'u</em> "house" and <em>biche'</em> "cricket" have the same falling melody as <em>beku'</em>, and <em>ya'a</em> "market" and <em>yi'inhdo'</em> "mole" have the same flat melody as <em>beye'</em>. The other three words (<em>duah</em> "agave", <em>yixu'</em> "avocado", and <em>yu'u</em> "lime (cal)") have the new melody, which starts low and ends high. <br> Did you notice that even though the words for house and lime are both spelled the same, you can tell them apart by their different melodies?</p>
 							</div>
 							<button id = "btnReset2">Click here to restart</button>
-							<button id="btnCheck2">Click here to check answer</button> -->
+							<button id="btnCheck2">Click here to check answer</button>
 						</div>
+						
 						<div id="end">
-						<!-- <p>How did you do? Was it hard to hear the melodies? If you don't speak a language with tone, it can be difficult to tell the difference between one melody or another! But in languages with tone like Santiago Laxopa Zapotec, it's just another part of daily language use.</p>
-						<p>This game was put together by Nido de Lenguas, a collaboration between <a href="http://scsenderos.org/" target="null">Senderos</a> and linguists at UC Santa Cruz. Our mission is to share the beauty and value of Oaxacan languages like Santiago Laxopa Zapotec. Visit <a href="https://wlma.ucsc.edu/nidodelenguas/" target="null">our website</a> to learn more, and sign up for free classes in Santiago Laxopa Zapotec.</p> -->
+						<p>How did you do? Was it hard to hear the melodies? If you don't speak a language with tone, it can be difficult to tell the difference between one melody or another! But in languages with tone like Santiago Laxopa Zapotec, it's just another part of daily language use.</p>
+						<p>This game was put together by Nido de Lenguas, a collaboration between <a href="http://scsenderos.org/" target="null">Senderos</a> and linguists at UC Santa Cruz. Our mission is to share the beauty and value of Oaxacan languages like Santiago Laxopa Zapotec. Visit <a href="https://wlma.ucsc.edu/nidodelenguas/" target="null">our website</a> to learn more, and sign up for free classes in Santiago Laxopa Zapotec.</p>
 						</div>
 
 					</div>
