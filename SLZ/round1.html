@@ -37,6 +37,13 @@
 				border: 0px solid;
 				margin: 1px;
 			}
+			#btnContainer, .spots {
+				display: flex;
+  				flex-wrap: wrap;
+				justify-content: center;
+				border: 0px solid;
+				margin: 1px;
+			}
 			#answer-cards, .drop-spots {
 				display: flex;
   				flex-wrap: wrap;
@@ -69,6 +76,8 @@
 				font-family: Arial;
 				text-align: center;
 				background: white; 
+				z-index: 1;
+				
 			}
 			.droppable {
 				position: relative;
@@ -81,34 +90,37 @@
 				font-family: Arial;
 				text-align: center;
 				background: white; 
+				z-index: 0;
 			}
 			
 			button {
-  				background-color: #72CDF4;
+  				background-color: #1DB4F5;
  				border: 2px solid;
  				border-color: #005581;
   				color: black;
-  				/*font-family: Avenir Next;*/
+  				font-family: Avenir Next;
   				padding: 5px 5px;
-  				margin: 0px;
+  				margin: 5px;
   				text-align: center;
   				text-decoration: none;
   				display: inline-block;
   				font-size: 14px;
 			}
+			button:hover{
+				background-color: #72CDF4;
+			}
 			input {
 				visibility:hidden;
 			}
 			label {
-				background-color: #E44C9A;
+				background-color: #FEB2E0;
 				color: black;
 				padding: 5px;
 				float: left;
 				cursor: pointer;
+				text-align: center;
 			}
-			label:hover {
-				background-color: #FEB2E0;
-			}
+			
 			.spoiler {
 				height: 0;
 				font-size: 0;
@@ -120,7 +132,7 @@
 				color: #005581;
 			}
 			a:visited {
-				color: #72CDF4;
+				color: #005581;
 			}
 			a:hover {
 				color: #72CDF4;
@@ -151,46 +163,109 @@
 			  		snap: '.droppable',
 			  		snapMode: 'inner',
 			  		snapTolerance: 20
-			  	} );
+			  	}) .each(function(index){
+					$(this).attr('data-home-l', $(this).offset().left)
+					$(this).attr('data-home-t', $(this).offset().top)
+					$(this).attr('boxIn', null)
+				});
 			  	$('.droppable').droppable( {
 			  		accept: '.draggable',
     				drop: handleDropEvent
-    			} );
+    			} ) .each(function(index){
+    				$(this).attr('hasItem', null)
+    			});
     			$('#cards').droppable( {
 			  		accept: '.draggable'
     			} );
 				
-				$("#testbtn").click(function(){
-					$("#r1 .draggable").each(function(index){
-						if ($(this).attr('data-ans') == 'fall'){
-							$(this).animate({
-								
-								//left: $("#r1").position().left,
-								//left: $("#dropFall1").position().left,
-								top: $(this).position().top
-							});
-							console.log ($(this).offset().left + " " + $(this).offset().top)
-						}
+				$("#btnShow1").click(function(){
 					
+					$('#r1 .draggable').attr("data-loc", "");
+					$('#r1 .draggable').attr("boxIn", null);
+					$('#r1 .droppable').attr("hasItem", null);
+					
+					$("#r1 .draggable").each(function(index){
+						var dragCard = $(this);
+						var ansAttr = $(this).attr('data-ans');
+						var leftAttr = $(this).attr('data-home-l');
+						var topAttr = $(this).attr('data-home-t');
+						
+						if (ansAttr == 'fall' && dragCard.attr("data-loc") != ansAttr){
+							
+								$("#r1 .droppable").each(function(index){
+									var drop = $(this);
+									
+									
+									if (drop.attr('hasItem') == null)
+									{
+									
+										if ($(this).attr('data-ans') == 'fall'){
+											
+											dragCard.attr("data-loc", $(this).attr("data-ans"));
+											dragCard.animate({
+												left: $(this).offset().left - (leftAttr),
+												top: $(this).offset().top - (topAttr)
+											});
+											dragCard.attr('boxIn', drop);
+											drop.attr('hasItem', dragCard);
+											//drop.has('.draggable') = dragCard;
+											return false;
+										}
+										
+									}
+									
+								});							
+						}
+						else if (ansAttr == 'flat' && dragCard.attr("data-loc") != ansAttr){
+							
+								$("#r1 .droppable").each(function(index){
+									var drop = $(this);
+									
+									
+									
+									if (drop.attr('hasItem') == null)
+									{
+										if ($(this).attr('data-ans') == 'flat'){
+											
+											dragCard.attr("data-loc", $(this).attr("data-ans"));
+											dragCard.animate({
+												left: $(this).offset().left - (leftAttr),
+												top: $(this).offset().top - (topAttr)
+											});
+											dragCard.attr('boxIn', drop);
+											drop.attr('hasItem', dragCard);
+											return false;
+										}
+									}
+									
+								});							
+						}
+						
 					});
-					console.log ($("#dropFall1").offset().left + " " + $("#dropFall1").offset().top)
+				
+					
+					$('#answerp1').show("slow");
+					$('#ContBtn1').show("fast");
 					
 				});
 				
 				$("#btnReset1").click(function() {
 					$('#r1 .draggable').attr("data-loc", "");
+					$('#r1 .draggable').attr("boxIn", null);
+					$('#r1 .droppable').attr("hasItem", null);
+					
 				    $("#r1 .draggable").animate({
 						"left": 0,
 						"top": 0
 				    });
-				});
-				
-				$("#btnReset2").click(function() {
-					$('#r2 .draggable').attr("data-loc", "");
-				    $("#r2 .draggable").animate({
-						"left": 0,
-						"top": 0
-				    });
+					
+					setTimeout(function() {
+						$('#congratsLabel1').fadeOut('fast')
+					}, 0);
+					
+					setTimeout(function() {
+						$('#answerp1').fadeOut('fast')
+					}, 0);
 				});
 				
 				$("#btnCheck1").click(function(){
@@ -218,37 +293,14 @@
 					}
 				});
 				
-				$("#btnCheck2").click(function(){
-					
-					var correctCount2 = 0;
-					
-					$("#r2 .draggable").each(function(index){
-						if ($(this).attr("data-loc") != $(this).attr("data-ans")){
-						    $(this).animate({
-								"left": 0,
-								"top": 0
-						    });
-						}
-						else if ($(this).attr("data-loc") == $(this).attr("data-ans")) {
-							
-							correctCount2 ++;
-						}
-					})
-					if (correctCount2 == 7){
-						$('#congratsLabel2').show("fast");
-						setTimeout(function() {
-							$('#congratsLabel2').fadeOut('slow')
-						}, 15000);
-					}
-				});
-				
 			}
 
 			function handleDropEvent( event, ui ) {
 				var draggable = ui.draggable;
 				var droppable = $(this);
-				
 				draggable.attr("data-loc", droppable.attr("data-ans"));
+				draggable.attr('boxIn', droppable);
+				droppable.attr('hasItem', draggable);
 				//alert( 'The "' + draggable.attr('id') +'" card was dropped onto me!');
 			}
 		</script>
@@ -350,15 +402,15 @@
 							<div id = "cards">
 								<div class= "drop-spots" id ="Melody_1">
 									<h4> Falling Melody </h4>
-									<div class="droppable" id = "dropFall1" data-ans="fall" style= "position: relative; left: 0; top: 0;"> </div>
+									<div class="droppable" id = "dropFall1" data-ans="fall"> </div>
 									<div class="droppable" id = "dropFall2" data-ans="fall"> </div>
 									<div class="droppable" id = "dropFall3" data-ans="fall"> </div>
 								</div>
 								<div class="drop-spots" id = "Melody #2">
 									<h4> Flat Melody </h4>
-									<div class="droppable" data-ans="flat"> </div>
-									<div class="droppable" data-ans="flat"> </div>
-									<div class="droppable" data-ans="flat"> </div>
+									<div class="droppable" id = "dropFlat1" data-ans="flat"> </div>
+									<div class="droppable" id = "dropFlat2" data-ans="flat"> </div>
+									<div class="droppable" id = "dropFlat3" data-ans="flat"> </div>
 								</div>
 							</div>
 							
@@ -370,17 +422,18 @@
 								<a href="round2.html" id="ContBtn1" style="display: none">Click Here to Continue</a>
 							</div>
 							
-							<div class="answer">
-								<input type="checkbox" name="answer1" id="answercheck1">
-								<label for="answercheck1" id="answerlabel1">Click here to show the answer!</label>
-								<p class="spoiler" id="answerp1"> The words <em>beku'</em> "dog", <em>xhua'</em> "corn", and <em>xhile'</em> "sheep", all have the same melody, that starts high and ends low. The words <em>beye'</em> "snow", <em>lage'</em> "leaf", and <em>ya'ado</em> "mountain" all have a different melody, that stays flat and low.</p>
+							<div id="congratsContainer"><label id="answerp1" style="display: none">The words <em>beku'</em> "dog", <em>xhua'</em> "corn", and <em>xhile'</em> "sheep", all have the same melody, that starts high and ends low. <br> The words <em>beye'</em> "snow", <em>lage'</em> "leaf", and <em>ya'ado</em> "mountain" all have a different melody, that stays flat and low.</label></div>
+							
+							<div id="btnContainer">
+								
+								<button id = "btnReset1">Restart</button>
+								
+								<button id = "btnCheck1">Check Your Answer</button>
+								
+								<button id = "btnShow1">Show The Answer</button>
+
+								
 							</div>
-							
-							
-							<button id = "btnReset1">Click here to restart</button>
-							<button id = "btnCheck1">Click here to check answer</button>
-							<!-- <button id = "testbtn">Test</button> -->
-							
 						</div>
 						<!-- <div class ="clear"></div> -->
 						<div id="r2">

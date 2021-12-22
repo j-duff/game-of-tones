@@ -38,6 +38,13 @@
 				border: 0px solid;
 				margin: 1px;
 			}
+			#btnContainer, .spots {
+				display: flex;
+  				flex-wrap: wrap;
+				justify-content: center;
+				border: 0px solid;
+				margin: 1px;
+			}
 			#answer-cards, .drop-spots {
 				display: flex;
   				flex-wrap: wrap;
@@ -70,6 +77,8 @@
 				font-family: Arial;
 				text-align: center;
 				background: white; 
+				z-index: 1;
+				
 			}
 			.droppable {
 				position: relative;
@@ -82,34 +91,37 @@
 				font-family: Arial;
 				text-align: center;
 				background: white; 
+				z-index: 0;
 			}
 			
 			button {
-  				background-color: #72CDF4;
+  				background-color: #1DB4F5;
  				border: 2px solid;
  				border-color: #005581;
   				color: black;
-  				/*font-family: Avenir Next;*/
+  				font-family: Avenir Next;
   				padding: 5px 5px;
-  				margin: 0px;
+  				margin: 5px;
   				text-align: center;
   				text-decoration: none;
   				display: inline-block;
   				font-size: 14px;
 			}
+			button:hover{
+				background-color: #72CDF4;
+			}
 			input {
 				visibility:hidden;
 			}
 			label {
-				background-color: #E44C9A;
+				background-color: #FEB2E0;
 				color: black;
 				padding: 5px;
 				float: left;
 				cursor: pointer;
+				text-align: center;
 			}
-			label:hover {
-				background-color: #FEB2E0;
-			}
+			
 			.spoiler {
 				height: 0;
 				font-size: 0;
@@ -121,7 +133,7 @@
 				color: #005581;
 			}
 			a:visited {
-				color: #72CDF4;
+				color: #005581;
 			}
 			a:hover {
 				color: #72CDF4;
@@ -131,7 +143,7 @@
 				height:35px;
 			}
 			
-			#answercheck2:checked ~ #answerp2 {
+			#answercheck1:checked ~ #answerp1 {
 				height: auto;
 				font-size: 1em;
 				opacity: 1;
@@ -152,71 +164,119 @@
 			  		snap: '.droppable',
 			  		snapMode: 'inner',
 			  		snapTolerance: 20
-			  	} );
+			  	}) .each(function(index){
+					$(this).attr('data-home-l', $(this).offset().left)
+					$(this).attr('data-home-t', $(this).offset().top)
+					$(this).attr('boxIn', null)
+				});
 			  	$('.droppable').droppable( {
 			  		accept: '.draggable',
     				drop: handleDropEvent
-    			} );
+    			} ) .each(function(index){
+    				$(this).attr('hasItem', null)
+    			});
     			$('#cards').droppable( {
 			  		accept: '.draggable'
     			} );
 				
-				$("#testbtn").click(function(){
-					$("#r1 .draggable").each(function(index){
-						if ($(this).attr('data-ans') == 'fall'){
-							$(this).animate({
-								
-								//left: $("#r1").position().left,
-								//left: $("#dropFall1").position().left,
-								top: $(this).position().top
-							});
-							console.log ($(this).offset().left + " " + $(this).offset().top)
-						}
+				$("#btnShow2").click(function(){
 					
+					$('#r2 .draggable').attr("data-loc", "");
+					$('#r2 .draggable').attr("boxIn", null);
+					$('#r2 .droppable').attr("hasItem", null);
+					
+					$("#r2 .draggable").each(function(index){
+						var dragCard = $(this);
+						var ansAttr = $(this).attr('data-ans');
+						var leftAttr = $(this).attr('data-home-l');
+						var topAttr = $(this).attr('data-home-t');
+						
+						if (ansAttr == 'fall' && dragCard.attr("data-loc") != ansAttr){
+							
+								$("#r2 .droppable").each(function(index){
+									var drop = $(this);
+									if (drop.attr('hasItem') == null)
+									{
+										if ($(this).attr('data-ans') == 'fall'){
+											
+											dragCard.attr("data-loc", $(this).attr("data-ans"));
+											dragCard.animate({
+												left: $(this).offset().left - (leftAttr),
+												top: $(this).offset().top - (topAttr)
+											});
+											dragCard.attr('boxIn', drop);
+											drop.attr('hasItem', dragCard);
+											return false;
+										}
+									}
+								});							
+						}
+						if (ansAttr == 'flat' && dragCard.attr("data-loc") != ansAttr){
+							
+								$("#r2 .droppable").each(function(index){
+									var drop = $(this);
+									if (drop.attr('hasItem') == null)
+									{
+										if ($(this).attr('data-ans') == 'flat'){
+											
+											dragCard.attr("data-loc", $(this).attr("data-ans"));
+											dragCard.animate({
+												left: $(this).offset().left - (leftAttr),
+												top: $(this).offset().top - (topAttr)
+											});
+											dragCard.attr('boxIn', drop);
+											drop.attr('hasItem', dragCard);
+											return false;
+										}
+									}
+								});							
+						}
+						if (ansAttr == 'rise' && dragCard.attr("data-loc") != ansAttr){
+							
+								$("#r2 .droppable").each(function(index){
+									var drop = $(this);
+									if (drop.attr('hasItem') == null)
+									{
+										if ($(this).attr('data-ans') == 'rise'){
+											
+											dragCard.attr("data-loc", $(this).attr("data-ans"));
+											dragCard.animate({
+												left: $(this).offset().left - (leftAttr),
+												top: $(this).offset().top - (topAttr)
+											});
+											dragCard.attr('boxIn', drop);
+											drop.attr('hasItem', dragCard);
+											return false;
+										}
+									}
+								});							
+						}
 					});
-					console.log ($("#dropFall1").offset().left + " " + $("#dropFall1").offset().top)
+					
+					$('#answerp2').show("slow");
 					
 				});
 				
-				$("#btnReset1").click(function() {
-					$('#r1 .draggable').attr("data-loc", "");
-				    $("#r1 .draggable").animate({
-						"left": 0,
-						"top": 0
-				    });
-				});
 				
 				$("#btnReset2").click(function() {
 					$('#r2 .draggable').attr("data-loc", "");
+					$('#r2 .draggable').attr("boxIn", null);
+					$('#r2 .droppable').attr("hasItem", null);
+					
 				    $("#r2 .draggable").animate({
 						"left": 0,
 						"top": 0
 				    });
+					
+					setTimeout(function() {
+						$('#congratsLabel2').fadeOut('fast')
+					}, 0);
+					
+					setTimeout(function() {
+						$('#answerp2').fadeOut('fast')
+					}, 0);
 				});
 				
-				$("#btnCheck1").click(function(){
-					
-					var correctCount = 0;
-					
-					$("#r1 .draggable").each(function(index){
-						if ($(this).attr("data-loc") != $(this).attr("data-ans")){
-						    $(this).animate({
-								"left": 0,
-								"top": 0
-						    });
-						}
-						else if ($(this).attr("data-loc") == $(this).attr("data-ans")) {
-							
-							correctCount ++;
-						}
-					})
-					if (correctCount == 6){
-						$('#congratsLabel1').show("fast");
-						setTimeout(function() {
-							$('#congratsLabel1').fadeOut('slow')
-						}, 15000);
-					}
-				});
 				
 				$("#btnCheck2").click(function(){
 					
@@ -247,8 +307,9 @@
 			function handleDropEvent( event, ui ) {
 				var draggable = ui.draggable;
 				var droppable = $(this);
-				
 				draggable.attr("data-loc", droppable.attr("data-ans"));
+				draggable.attr('boxIn', droppable);
+				droppable.attr('hasItem', draggable);
 				//alert( 'The "' + draggable.attr('id') +'" card was dropped onto me!');
 			}
 		</script>
@@ -430,14 +491,21 @@
 							<div id="congratsContainer">
 								<label id="congratsLabel2" style="display: none">Great Job! All of your answers are correct!</label>
 							</div>
-							<div class ="clear"></div>
-							<div class="answer">
-								<input type="checkbox" name="answer2" id="answercheck2">
-								<label for="answercheck2" id="answerlabel2">Click here to show the answer!</label>
-								<p class="spoiler" id="answerp2"> The words <em>yu'u</em> "house" and <em>biche'</em> "cricket" have the same falling melody as <em>beku'</em>, and <em>ya'a</em> "market" and <em>yi'inhdo'</em> "mole" have the same flat melody as <em>beye'</em>. The other three words (<em>duah</em> "agave", <em>yixu'</em> "avocado", and <em>yu'u</em> "lime (cal)") have the new melody, which starts low and ends high. <br> Did you notice that even though the words for house and lime are both spelled the same, you can tell them apart by their different melodies?</p>
+							
+							<div id="congratsContainer"><label id="answerp2" style="display: none">The words <em>yu'u</em> "house" and <em>biche'</em> "cricket" have the same falling melody as <em>beku'</em>, and <em>ya'a</em> "market" and <em>yi'inhdo'</em> "mole" have the same flat melody as <em>beye'</em>. <br> The other three words (<em>duah</em> "agave", <em>yixu'</em> "avocado", and <em>yu'u</em> "lime (cal)") have the new melody, which starts low and ends high. <br> Did you notice that even though the words for house and lime are both spelled the same, you can tell them apart by their different melodies?</label></div>
+							
+							<div id="btnContainer">
+								
+								
+								<button id = "btnReset2">Restart</button>
+								
+								<button id = "btnCheck2">Check Your Answer</button>
+								
+								<button id = "btnShow2">Show The Answer</button>
+								
+								
 							</div>
-							<button id = "btnReset2">Click here to restart</button>
-							<button id="btnCheck2">Click here to check answer</button>
+							
 						</div>
 						
 						<div id="end">

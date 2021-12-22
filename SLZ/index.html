@@ -31,13 +31,7 @@
 				border-color: black;
 				margin: 10px;
 			}
-			#congratsContainer, .spots {
-				display: flex;
-  				flex-wrap: wrap;
-				justify-content: center;
-				border: 0px solid;
-				margin: 1px;
-			}
+			
 			#answer-cards, .drop-spots {
 				display: flex;
   				flex-wrap: wrap;
@@ -85,17 +79,20 @@
 			}
 			
 			button {
-  				background-color: #72CDF4;
+  				background-color: #1DB4F5;
  				border: 2px solid;
  				border-color: #005581;
   				color: black;
-  				/*font-family: Avenir Next;*/
+  				font-family: Avenir Next;
   				padding: 5px 5px;
-  				margin: 0px;
+  				margin: 5px;
   				text-align: center;
   				text-decoration: none;
   				display: inline-block;
   				font-size: 14px;
+			}
+			button:hover{
+				background-color: #72CDF4;
 			}
 			input {
 				visibility:hidden;
@@ -121,7 +118,7 @@
 				color: #005581;
 			}
 			a:visited {
-				color: #72CDF4;
+				color: #005581;
 			}
 			a:hover {
 				color: #72CDF4;
@@ -153,89 +150,7 @@
     			} );
     			$('#cards').droppable( {
 			  		accept: '.draggable'
-    			} );
-				
-				$("#testbtn").click(function(){
-					$("#r1 .draggable").each(function(index){
-						if ($(this).attr('data-ans') == 'fall'){
-							$(this).animate({
-								
-								//left: $("#r1").position().left,
-								//left: $("#dropFall1").position().left,
-								top: $(this).position().top
-							});
-							console.log ($(this).offset().left + " " + $(this).offset().top)
-						}
-					
-					});
-					console.log ($("#dropFall1").offset().left + " " + $("#dropFall1").offset().top)
-					
-				});
-				
-				$("#btnReset1").click(function() {
-					$('#r1 .draggable').attr("data-loc", "");
-				    $("#r1 .draggable").animate({
-						"left": 0,
-						"top": 0
-				    });
-				});
-				
-				$("#btnReset2").click(function() {
-					$('#r2 .draggable').attr("data-loc", "");
-				    $("#r2 .draggable").animate({
-						"left": 0,
-						"top": 0
-				    });
-				});
-				
-				$("#btnCheck1").click(function(){
-					
-					var correctCount = 0;
-					
-					$("#r1 .draggable").each(function(index){
-						if ($(this).attr("data-loc") != $(this).attr("data-ans")){
-						    $(this).animate({
-								"left": 0,
-								"top": 0
-						    });
-						}
-						else if ($(this).attr("data-loc") == $(this).attr("data-ans")) {
-							
-							correctCount ++;
-						}
-					})
-					if (correctCount == 6){
-						$('#congratsLabel1').show("fast");
-						setTimeout(function() {
-							$('#congratsLabel1').fadeOut('slow')
-						}, 15000);
-					}
-				});
-				
-				$("#btnCheck2").click(function(){
-					
-					var correctCount2 = 0;
-					
-					$("#r2 .draggable").each(function(index){
-						if ($(this).attr("data-loc") != $(this).attr("data-ans")){
-						    $(this).animate({
-								"left": 0,
-								"top": 0
-						    });
-						}
-						else if ($(this).attr("data-loc") == $(this).attr("data-ans")) {
-							
-							correctCount2 ++;
-						}
-					})
-					if (correctCount2 == 7){
-						$('#congratsLabel2').show("fast");
-						setTimeout(function() {
-							$('#congratsLabel2').fadeOut('slow')
-						}, 15000);
-					}
-				});
-				
+    			} );				
 			}
 
 			function handleDropEvent( event, ui ) {
