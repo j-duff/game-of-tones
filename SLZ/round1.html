@@ -14,146 +14,11 @@
         <link href="/css/theme.css" rel="stylesheet" type="text/css" media="all" />
         <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
         <link href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Open+Sans&family=Raleway&display=swap' rel='stylesheet' type='text/css'/>
-        <style>
-			body {
-				font-family: Avenir Next;
-				margin: 25px;
-			}
-        	.col-12 {
-        		margin: 20px;
-        	}
-			#cards, .spots {
-				display: flex;
-  				flex-wrap: wrap;
-				justify-content: center;
-				border: 0px solid;
-				border-color: black;
-				margin: 10px;
-			}
-			#congratsContainer, .spots {
-				display: flex;
-  				flex-wrap: wrap;
-				justify-content: center;
-				border: 0px solid;
-				margin: 1px;
-			}
-			#btnContainer, .spots {
-				display: flex;
-  				flex-wrap: wrap;
-				justify-content: center;
-				border: 0px solid;
-				margin: 1px;
-			}
-			#answer-cards, .drop-spots {
-				display: flex;
-  				flex-wrap: wrap;
-				justify-content: center;
-				border: 3px solid;
-				border-color: black;
-				margin: 10px;
-			}
-			.spots {
-				float: left;
-			}
-			.card { 
-				margin: 1em;
-				border: 3px solid;
-				border-color: black;
-				padding: 1em;
-				width: 90px; 
-				height: 120px; 
-				line-height: 1;
-				text-align: center;
-				background: white; 
-			}
-			#draggable, .draggable { 
-				margin: 1em;
-				border: 3px solid;
-				padding: 1em;
-				width: 90px; 
-				height: 120px; 
-				line-height: 1;
-				font-family: Arial;
-				text-align: center;
-				background: white; 
-				z-index: 1;
-				
-			}
-			.droppable {
-				position: relative;
-				margin: 1em;
-				border: 0.5px solid;
-				padding: 1em;
-				width: 90px; 
-				height: 120px; 
-				line-height: 1;
-				font-family: Arial;
-				text-align: center;
-				background: white; 
-				z-index: 0;
-			}
-			
-			button {
-  				background-color: #1DB4F5;
- 				border: 2px solid;
- 				border-color: #005581;
-  				color: black;
-  				font-family: Avenir Next;
-  				padding: 5px 5px;
-  				margin: 5px;
-  				text-align: center;
-  				text-decoration: none;
-  				display: inline-block;
-  				font-size: 14px;
-			}
-			button:hover{
-				background-color: #72CDF4;
-			}
-			input {
-				visibility:hidden;
-			}
-			label {
-				background-color: #FEB2E0;
-				color: black;
-				padding: 5px;
-				float: left;
-				cursor: pointer;
-				text-align: center;
-			}
-			
-			.spoiler {
-				height: 0;
-				font-size: 0;
-				opacity: 0;
-				background-color: #FEB2E0;
-				padding: 5px;
-			}
-			a:link {
-				color: #005581;
-			}
-			a:visited {
-				color: #005581;
-			}
-			a:hover {
-				color: #72CDF4;
-			}
-			.clear {
-				clear:both;
-				height:35px;
-			}
-			
-			#answercheck1:checked ~ #answerp1 {
-				height: auto;
-				font-size: 1em;
-				opacity: 1;
-			}
-			
-			h4 {margin: 10px;}
-			
-		</style>
+		<link href="GoT_Styles.css" rel="stylesheet" type="text/css" media="all"/>
 		<script type="text/javascript">
 			$( init );
-
+			
+			//generate draggable and droppable cards with relevant attributes
 			function init() {
 			  	$('.draggable').draggable( {
 			  		cursor: 'move',
@@ -178,8 +43,10 @@
 			  		accept: '.draggable'
     			} );
 				
+				//Show Answer Button
 				$("#btnShow1").click(function(){
 					
+					//reset drag/drop attributes
 					$('#r1 .draggable').attr("data-loc", "");
 					$('#r1 .draggable').attr("boxIn", null);
 					$('#r1 .droppable').attr("hasItem", null);
@@ -190,15 +57,12 @@
 						var leftAttr = $(this).attr('data-home-l');
 						var topAttr = $(this).attr('data-home-t');
 						
+						//move draggable cards w/ 'falling' melody to correct and open answer spots
 						if (ansAttr == 'fall' && dragCard.attr("data-loc") != ansAttr){
-							
 								$("#r1 .droppable").each(function(index){
 									var drop = $(this);
-									
-									
 									if (drop.attr('hasItem') == null)
-									{
-									
+									{									
 										if ($(this).attr('data-ans') == 'fall'){
 											
 											dragCard.attr("data-loc", $(this).attr("data-ans"));
@@ -208,25 +72,19 @@
 											});
 											dragCard.attr('boxIn', drop);
 											drop.attr('hasItem', dragCard);
-											//drop.has('.draggable') = dragCard;
 											return false;
-										}
-										
+										}										
 									}
-									
 								});							
 						}
-						else if (ansAttr == 'flat' && dragCard.attr("data-loc") != ansAttr){
-							
+						
+						//move draggable cards w/ 'flat' melody to correct and open answer spots
+						else if (ansAttr == 'flat' && dragCard.attr("data-loc") != ansAttr){					
 								$("#r1 .droppable").each(function(index){
 									var drop = $(this);
-									
-									
-									
 									if (drop.attr('hasItem') == null)
 									{
-										if ($(this).attr('data-ans') == 'flat'){
-											
+										if ($(this).attr('data-ans') == 'flat'){											
 											dragCard.attr("data-loc", $(this).attr("data-ans"));
 											dragCard.animate({
 												left: $(this).offset().left - (leftAttr),
@@ -236,42 +94,41 @@
 											drop.attr('hasItem', dragCard);
 											return false;
 										}
-									}
-									
+									}									
 								});							
-						}
-						
+						}						
 					});
-				
-					
 					$('#answerp1').show("slow");
-					$('#ContBtn1').show("fast");
-					
+					$('#ContBtn1').show("fast");				
 				});
 				
+				//Restart button
 				$("#btnReset1").click(function() {
 					$('#r1 .draggable').attr("data-loc", "");
 					$('#r1 .draggable').attr("boxIn", null);
 					$('#r1 .droppable').attr("hasItem", null);
 					
+					//revert cards to starting position
 				    $("#r1 .draggable").animate({
 						"left": 0,
 						"top": 0
 				    });
 					
+					//hide the 'congrats' message if already shown
 					setTimeout(function() {
 						$('#congratsLabel1').fadeOut('fast')
 					}, 0);
-					
+					//hide the correct answer details if already shown
 					setTimeout(function() {
 						$('#answerp1').fadeOut('fast')
 					}, 0);
 				});
 				
-				$("#btnCheck1").click(function(){
-					
+				//Check Answer Button
+				$("#btnCheck1").click(function(){				
 					var correctCount = 0;
 					
+					//revert draggable cards to starting position if situated in an incorrect answer spot
 					$("#r1 .draggable").each(function(index){
 						if ($(this).attr("data-loc") != $(this).attr("data-ans")){
 						    $(this).animate({
@@ -279,15 +136,20 @@
 								"top": 0
 						    });
 						}
+						//update correctCount if card is situated in a correct answer spot
 						else if ($(this).attr("data-loc") == $(this).attr("data-ans")) {
 							
 							correctCount ++;
 						}
 					})
+					
+					//Show congrats message, answer details, and continue button if all cards are placed in correct spots
 					if (correctCount == 6){
 						$('#congratsLabel1').show("fast");
 						$('#ContBtn1').show("fast");
 						$('#answerp1').show("slow");
+						
+						//congrats label disappears after 15000 ms
 						setTimeout(function() {
 							$('#congratsLabel1').fadeOut('slow')
 						}, 15000);
@@ -295,14 +157,14 @@
 				});
 				
 			}
-
+			
+			//update attributes when draggable is dropped onto droppable
 			function handleDropEvent( event, ui ) {
 				var draggable = ui.draggable;
 				var droppable = $(this);
 				draggable.attr("data-loc", droppable.attr("data-ans"));
 				draggable.attr('boxIn', droppable);
 				droppable.attr('hasItem', draggable);
-				//alert( 'The "' + draggable.attr('id') +'" card was dropped onto me!');
 			}
 		</script>
     </head>
@@ -353,24 +215,6 @@
 						<audio id="audio-agave" src="mp3/agave.mp3"></audio>
 						<audio id="audio-avocado" src="mp3/avocado.mp3"></audio>
 						<audio id="audio-chapulin" src="mp3/chapulin.mp3"></audio>
-						<!-- <div id="instruct">
-							<h2> Learn about tones in Santiago Laxopa Zapotec! </h2>
-							<p> In Santiago Laxopa Zapotec, words have different melodies. For instance, in some words, the pitch will start high and end low, and in others, the pitch will stay low through the whole word.</p>
-							<p>On this page, you can play our "Game of Tones", where you can learn some Santiago Laxopa Zapotec words, and practice listening to their melodies.</p>
-							<p>To start, see if you can hear the difference between the two words below: <em>beku'</em> "dog" and <em>beye'</em> "snow". Click on the blue boxes to hear the words and listen to their melodies.</p>
-								<div id="cards">
-									<div class="card" id="card-dog">
-										<button onclick="document.getElementById('audio-dog').play()">beku'</button> <br>
-										<img src = "img/dog.png" style="width:90px;margin:8px 0px 0px 0px"> <br>
-									</div>
-									<div class="card" id="card-snow">
-										<button onclick="document.getElementById('audio-snow').play()">beye'</button> <br>
-										<img src = "img/snow.png" style="width:70px;margin:5px 0px 0px 0px"> <br>
-										</div>
-								</div>
-							<p>Can you hear how <em>beku'</em> starts high and falls, and <em>beye'</em> stays very flat? These are two of the melodies that words can have in Santiago Laxopa Zapotec.</p>
-							<p>Below, we'll give you some more words, and you can see if you can figure out which words have which melodies.</p>
-						</div> -->
 						<div id="r1">
 							<h3>Round 1</h3>
 							<p>The six words below are examples of two different melodies. See if you can figure out which is which!</p>
@@ -424,89 +268,13 @@
 							<div id="congratsContainer">
 								<a href="round2.html" id="ContBtn1" style="display: none">Click Here to Continue</a>
 							</div>
-							
-							
-							<div id="btnContainer">
-								
-								<button id = "btnReset1">Restart</button>
-								
-								<button id = "btnCheck1">Check Your Answer</button>
-								
+														
+							<div id="btnContainer">								
+								<button id = "btnReset1">Restart</button>								
+								<button id = "btnCheck1">Check Your Answer</button>								
 								<button id = "btnShow1">Show The Answer</button>
-
-								
 							</div>
 						</div>
-						<!-- <div class ="clear"></div> -->
-						<div id="r2">
-							<!-- <h3>Round 2</h3>
-							<p>Now let's see some more words. Four of these words have the melodies that you just heard in Round 1, but three of them have a new melody. See if you can hear which words have the new melody.</p>
-							<div id="cards">
-								<div class="draggable" id="card-chapulin" data-ans="fall" data-loc="">
-									<button onclick="document.getElementById('audio-chapulin').play()">biche'</button> <br>
-									<img src = "img/chapulin.png" style="width:70px;margin:5px 0px 0px 0px"> <br>
-								</div>
-								<div class="draggable" id="card-market" data-ans="flat" data-loc="">
-									<button onclick="document.getElementById('audio-market').play()">ya'a</button> <br>
-									<img src = "img/market.png" style="width:70px;margin:8px 0px 0px 0px"> <br>
-								</div>
-								<div class="draggable" id="card-agave" data-ans="rise" data-loc="">
-									<button onclick="document.getElementById('audio-agave').play()">duah</button> <br>
-									<img src = "img/agave.png" style="width:80px;margin:5px 0px 0px 0px"> <br>
-								</div>
-								<div class="draggable" id="card-mole" data-ans="flat" data-loc="">
-									<button onclick="document.getElementById('audio-mole').play()">yi'inhdo'</button> <br>
-									<img src = "img/mole.png" style="width:90px;margin:12px 0px 0px 0px"> <br>
-								</div>
-								<div class="draggable" id="card-house" data-ans="fall" data-loc="">
-									<button onclick="document.getElementById('audio-house').play()">yu'u</button> <br>
-									<img src = "img/house.png" style="width:80px;margin:5px 0px 0px 0px"> <br>
-								</div>
-								<div class="draggable" id="card-avocado" data-ans="rise" data-loc="">
-									<button onclick="document.getElementById('audio-avocado').play()">yixu'</button> <br>
-									<img src = "img/avocado.png" style="width:70px;margin:12px 0px 0px 0px"> <br>
-								</div>
-								<div class="draggable" id="card-lime" data-ans="rise" data-loc="">
-									<button onclick="document.getElementById('audio-lime').play()">yu'u</button> <br>
-									<img src = "img/lime.png" style="width:65px;margin:5px 0px 0px 0px"> <br>
-								</div>
-							</div>
-							<div id ="cards">
-								<div class ="drop-spots" id = "R1fall">
-									<h4> Falling Melody </h4>
-									<div class="droppable" data-ans="fall"> </div>
-									<div class="droppable" data-ans="fall"> </div>
-								</div>
-								<div class="drop-spots" id = "R1flat">
-									<h4> Flat Melody </h4>
-									<div class="droppable" data-ans="flat"> </div>
-									<div class="droppable" data-ans="flat"> </div>
-								</div>
-								<div class="drop-spots" id = "New Melody">
-									<h4> New Melody </h4>
-									<div class="droppable" data-ans="rise"> </div>
-									<div class="droppable" data-ans="rise"> </div>
-									<div class="droppable" data-ans="rise"> </div>
-								</div>
-							</div>
-							<div id="congratsContainer">
-								<label id="congratsLabel2" style="display: none">Great Job! All of your answers are correct!</label>
-							</div>
-							<div class ="clear"></div>
-							<div class="answer">
-								<input type="checkbox" name="answer2" id="answercheck2">
-								<label for="answercheck2" id="answerlabel2">Click here to show the answer!</label>
-								<p class="spoiler" id="answerp2"> The words <em>yu'u</em> "house" and <em>biche'</em> "cricket" have the same falling melody as <em>beku'</em>, and <em>ya'a</em> "market" and <em>yi'inhdo'</em> "mole" have the same flat melody as <em>beye'</em>. The other three words (<em>duah</em> "agave", <em>yixu'</em> "avocado", and <em>yu'u</em> "lime (cal)") have the new melody, which starts low and ends high. <br> Did you notice that even though the words for house and lime are both spelled the same, you can tell them apart by their different melodies?</p>
-							</div>
-							<button id = "btnReset2">Click here to restart</button>
-							<button id="btnCheck2">Click here to check answer</button> -->
-						</div>
-						<!-- <div class ="clear"></div> -->
-						<div id="end">
-						<!-- <p>How did you do? Was it hard to hear the melodies? If you don't speak a language with tone, it can be difficult to tell the difference between one melody or another! But in languages with tone like Santiago Laxopa Zapotec, it's just another part of daily language use.</p>
-						<p>This game was put together by Nido de Lenguas, a collaboration between <a href="http://scsenderos.org/" target="null">Senderos</a> and linguists at UC Santa Cruz. Our mission is to share the beauty and value of Oaxacan languages like Santiago Laxopa Zapotec. Visit <a href="https://wlma.ucsc.edu/nidodelenguas/" target="null">our website</a> to learn more, and sign up for free classes in Santiago Laxopa Zapotec.</p> -->
-						</div>
-
 					</div>
                 </div>
            </div>
