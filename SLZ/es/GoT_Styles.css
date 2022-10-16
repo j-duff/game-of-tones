@@ -1,0 +1,131 @@
+body {
+	font-family: Avenir Next;
+	margin: 25px;
+}
+.col-12 {
+	margin: 20px;
+}
+#cards, .spots {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 0px solid;
+	border-color: black;
+	margin: 10px;
+}
+#congratsContainer, .spots {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 0px solid;
+	margin: 1px;
+}
+#btnContainer, .spots {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 0px solid;
+	margin: 1px;
+}
+#answer-cards, .drop-spots {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	border: 3px solid;
+	border-color: black;
+	margin: 10px;
+}
+.spots {
+	float: left;
+}
+.card { 
+	margin: 1em;
+	border: 3px solid;
+	border-color: black;
+	padding: 1em;
+	width: 90px; 
+	height: 120px; 
+	line-height: 1;
+	text-align: center;
+	background: white; 
+}
+#draggable, .draggable { 
+	margin: 1em;
+	border: 3px solid;
+	padding: 1em;
+	width: 90px; 
+	height: 120px; 
+	line-height: 1;
+	font-family: Arial;
+	text-align: center;
+	background: white; 
+	z-index: 1;
+	
+}
+.droppable {
+	position: relative;
+	margin: 1em;
+	border: 0.5px solid;
+	padding: 1em;
+	width: 90px; 
+	height: 120px; 
+	line-height: 1;
+	font-family: Arial;
+	text-align: center;
+	background: white; 
+	z-index: 0;
+}
+
+button {
+	background-color: #1DB4F5;
+	border: 2px solid;
+	border-color: #005581;
+	color: black;
+	font-family: Avenir Next;
+	padding: 5px 5px;
+	margin: 5px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 14px;
+}
+button:hover{
+	background-color: #72CDF4;
+}
+input {
+	visibility:hidden;
+}
+label {
+	background-color: #FEB2E0;
+	color: black;
+	padding: 5px;
+	float: left;
+	cursor: pointer;
+	text-align: center;
+}
+
+.spoiler {
+	height: 0;
+	font-size: 0;
+	opacity: 0;
+	background-color: #FEB2E0;
+	padding: 5px;
+}
+a:link {
+	color: #005581;
+	font-size: 18px;
+}
+a:visited {
+	color: #005581;
+	font-size: 18px;
+}
+a:hover {
+	color: #72CDF4;
+	font-size: 18px;
+}
+.clear {
+	clear:both;
+	height:35px;
+}
+
+h4 {margin: 10px;}
