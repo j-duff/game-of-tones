@@ -1,0 +1,133 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Game of Tones - Round 1 Template</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/css/font-awesome.min.css" rel="stylesheet" type="text/css" media="all">
+        <link href="/css/themify-icons.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/css/flexslider.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/css/lightbox.min.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/css/ytplayer.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/css/theme.css" rel="stylesheet" type="text/css" media="all" />
+        <link href="/css/custom.css" rel="stylesheet" type="text/css" media="all" />
+        <link href='https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;1,300;1,400&family=Open+Sans&family=Raleway&display=swap' rel='stylesheet' type='text/css'/>
+		<link href="GoT_Styles.css" rel="stylesheet" type="text/css" media="all"/>
+		
+		<!--Do Not Edit -- these scripts permit all of the dragging/dropping functionality of the GoT-->
+		<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+		<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+		
+		<!--Only edit if you rename the round1-template JavaScript (js) file-->
+		<script src = "round1-template.js"></script>
+		
+    </head>
+    <body>
+		
+	<div class="main-container">           
+       <section class="p0">
+           <div class="container">
+               <div class="row">
+                   <div class="col-12">  
+					   	
+						<!--EDIT HERE: Add audio files using their location in the directory (src) and label the files for later use (id)-->
+				        <audio id="audio-corn" src="mp3/corn.mp3"></audio>
+						<audio id="audio-dog" src="mp3/dog.mp3"></audio>
+						<audio id="audio-leaf" src="mp3/leaf.mp3"></audio>
+						<audio id="audio-mountain" src="mp3/mountain.mp3"></audio>
+						<audio id="audio-sheep" src="mp3/sheep.mp3"></audio>
+						<audio id="audio-snow" src="mp3/snow.mp3"></audio>
+						<audio id="audio-market" src="mp3/market.mp3"></audio>
+						<audio id="audio-mole" src="mp3/mole.mp3"></audio>
+						<audio id="audio-house" src="mp3/house.mp3"></audio>
+						<audio id="audio-lime" src="mp3/lime.mp3"></audio>
+						<audio id="audio-agave" src="mp3/agave.mp3"></audio>
+						<audio id="audio-avocado" src="mp3/avocado.mp3"></audio>
+						<audio id="audio-chapulin" src="mp3/chapulin.mp3"></audio>
+						
+						<!--initiate Round 1 (r1) and generate the draggable card deck and the empty droppables-->
+						<div id="r1">
+							<h3>Round 1</h3>
+							<p>The six words below are examples of two different melodies. See if you can figure out which is which!</p>
+							
+							<!--introduce each draggable card-->
+							<div id="cards">
+								
+								<!--EDIT HERE: define the attributes of the card (class, id), including the type of melody pattern (here, data-ans = 'pattern1')-->
+								<div class="draggable" id="card-corn" data-ans="pattern1" data-loc=""> 
+									
+									<!--each card has a button which displays the word and plays the corresponding audio when clicked-->
+									<button onclick="document.getElementById('audio-corn').play()">xhua'</button> <br>
+									
+									<!--assign the card an image corresponding with the audio (adjust size if necessary)-->
+									<img src = "img/corn.png" style="width:90px;margin:8px 0px 0px 0px"> <br>
+								</div>
+								
+								<!--repeat for each card -- **Pay attention to the pattern number as these need to match the patterns referenced in the js file** -->
+								<div class="draggable" id="card-dog" data-ans="pattern1" data-loc=""> 
+									<button onclick="document.getElementById('audio-dog').play()">beku'</button> <br>
+									<img src = "img/dog.png" style="width:90px;margin:8px 0px 0px 0px"> <br>
+								</div>
+								<div class="draggable" id="card-leaf" data-ans="pattern2" data-loc=""> 
+									<button onclick="document.getElementById('audio-leaf').play()">lage'</button> <br>
+									<img src = "img/leaf.png" style="width:70px;margin:8px 0px 0px 0px"> <br>
+								</div>
+								<div class="draggable" id="card-mountain" data-ans="pattern2" data-loc=""> 
+									<button onclick="document.getElementById('audio-mountain').play()">ya'ado</button> <br>
+									<img src = "img/mountain.png" style="width:100px;margin:12px 0px 0px 0px"> <br>
+								</div>
+								<div class="draggable" id="card-sheep" data-ans="pattern1" data-loc=""> 
+									<button onclick="document.getElementById('audio-sheep').play()">xhile'</button> <br>
+									<img src = "img/sheep.png" style="width:80px;margin:8px 0px 0px 0px"> <br>
+								</div>
+								<div class="draggable" id="card-snow" data-ans="pattern2" data-loc=""> 
+									<button onclick="document.getElementById('audio-snow').play()">beye'</button> <br>
+									<img src = "img/snow.png" style="width:70px;margin:5px 0px 0px 0px"> <br>
+								</div>
+							</div>
+							
+							<!--EDIT HERE: generate each droppable spot with attributes corresponding to the distinct melodies (pattern1/2 as required to be comptaible with the JS file)-->
+							<div id = "cards">
+								<div class= "drop-spots" id ="Melody #1">
+									<h4> Falling Melody </h4>
+									<div class="droppable" data-ans="pattern1"> </div>
+									<div class="droppable" data-ans="pattern1"> </div>
+									<div class="droppable" data-ans="pattern1"> </div>
+								</div>
+								<div class="drop-spots" id = "Melody #2">
+									<h4> Flat Melody</h4>
+									<div class="droppable" data-ans="pattern2"> </div>
+									<div class="droppable" data-ans="pattern2"> </div>
+									<div class="droppable" data-ans="pattern2"> </div>
+								</div>
+							</div>
+							
+							<!--display a message upon correct completion of the game-->
+							<div id="congratsContainer">
+								<label id="congratsLabel1" style="display: none">Great Job! All of your answers are correct!</label>
+							</div>
+							
+							<!--textual explanation of the answers displayed upon completion of the game-->
+							<div id="congratsContainer"><label id="answerp1" style="display: none">The words <em>beku'</em> "dog", <em>xhua'</em> "corn", and <em>xhile'</em> "sheep", all have the same melody, that starts high and ends low. <br> The words <em>beye'</em> "snow", <em>lage'</em> "leaf", and <em>ya'ado</em> "mountain" all have a different melody, that stays flat and low.</label></div>
+							<!--link to Round2 html displayed upon completion of the game-->
+							<div id="congratsContainer">
+								<a href="round2-template.html" id="ContBtn1" style="display: none">Click Here to Continue</a>
+							</div>
+							
+							<!--centered container for the buttons available while playing the game-->
+							<div id="btnContainer">								
+								<button id = "btnReset1">Restart</button>								
+								<button id = "btnCheck1">Check Your Answer</button>								
+								<button id = "btnShow1">Show The Answer</button>
+							</div>
+						</div>
+					</div>
+                </div>
+           </div>
+           <!--end of container-->
+       </section>
+		</div>
+
+    </body>
+</html>
+				
