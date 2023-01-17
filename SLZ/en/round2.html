@@ -205,6 +205,9 @@
 		
 	<div class="main-container">          
     <section class="page-title page-title-4 bg-secondary">
+    		<div class="background-image-holder" style="opacity:0.25">
+                    <img alt="Background Image" class="background-image" src="/images/gameoftones-banner.jpg"/>
+            </div>
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
@@ -240,9 +243,10 @@
 						<audio id="audio-agave" src="mp3/agave.mp3"></audio>
 						<audio id="audio-avocado" src="mp3/avocado.mp3"></audio>
 						<audio id="audio-chapulin" src="mp3/chapulin.mp3"></audio>
+
 						<div id="r2">
-							<h3>Segunda Etapa</h3>
-							<p>Ahora, veamos algunas palabras más. Cuatro de estas palabras tienen las melodías que oíste en la primera etapa, pero tres tienen una melodía nueva. Intenta oír qué palabras tienen la melodía nueva.</p>
+							<h3>Round 2</h3>
+							<p>Now let's see some more words. Four of these words have the melodies that you just heard in Round 1, but three of them have a new melody. See if you can hear which words have the new melody.</p>
 							<div id="cards">
 								<div class="draggable" id="card-chapulin" data-ans="fall" data-loc="">
 									<button onclick="document.getElementById('audio-chapulin').play()">biche'</button> <br>
@@ -275,37 +279,46 @@
 							</div>
 							<div id ="cards">
 								<div class ="drop-spots" id = "R1fall">
-									<h4> Melodía descendente </h4>
+									<h4> Falling Melody </h4>
 									<div class="droppable" data-ans="fall"> </div>
 									<div class="droppable" data-ans="fall"> </div>
 								</div>
 								<div class="drop-spots" id = "R1flat">
-									<h4> Melodía plana </h4>
+									<h4> Flat Melody </h4>
 									<div class="droppable" data-ans="flat"> </div>
 									<div class="droppable" data-ans="flat"> </div>
 								</div>
 								<div class="drop-spots" id = "New Melody">
-									<h4> Melodía nueva </h4>
+									<h4> New Melody </h4>
 									<div class="droppable" data-ans="rise"> </div>
 									<div class="droppable" data-ans="rise"> </div>
 									<div class="droppable" data-ans="rise"> </div>
 								</div>
 							</div>
 							<div id="congratsContainer">
-								<label id="congratsLabel2" style="display: none">¡Buen trabajo! ¡Todas tus respuestas son correctas!</label>
+								<label id="congratsLabel2" style="display: none">Great Job! All of your answers are correct!</label>
 							</div>
 							
-							<div id="congratsContainer"><label id="answerp2" style="display: none">Las palabras <em>yu'u</em> "casa" y <em>biche'</em> "chapulín" tienen la misma melodía descendente como <em>beku'</em>, y <em>ya'a</em> "mercado" y <em>yi'inhdo'</em> "mole" tienen la misma melodía plana como <em>beye'</em>. Las tres otras palabras (<em>duah</em> "agave", <em>yixu'</em> "aguacate", and <em>yu'u</em> "cal") tienen la melodía nueva, que empieza baja y termina alta. <br> ¿Observaste que aunque las palabras para casa y cal se escriben igual, puedes distinguirlas por sus melodías diferentes?</label></div>
+							<div id="congratsContainer"><label id="answerp2" style="display: none">The words <em>yu'u</em> "house" and <em>biche'</em> "cricket" have the same falling melody as <em>beku'</em>, and <em>ya'a</em> "market" and <em>yi'inhdo'</em> "mole" have the same flat melody as <em>beye'</em>. <br> The other three words (<em>duah</em> "agave", <em>yixu'</em> "avocado", and <em>yu'u</em> "lime (cal)") have the new melody, which starts low and ends high. <br> Did you notice that even though the words for house and lime are both spelled the same, you can tell them apart by their different melodies?</label></div>
 							
-							<div id="btnContainer">	
-								<button id = "btnReset2">Reinicia</button>								
-								<button id = "btnCheck2">Comprueba tus respuestas</button>								
-								<button id = "btnShow2">Revela las soluciones</button>																
-							</div>							
-						</div>						
+							<div id="btnContainer">
+								
+								
+								<button id = "btnReset2">Restart</button>
+								
+								<button id = "btnCheck2">Check Your Answer</button>
+								
+								<button id = "btnShow2">Show The Answer</button>
+								
+								
+							</div>
+							
+						</div>
+						
 						<div id="end">
-						<p>¿Cómo te fue? ¿Fue difícil oír las melodías? Si no hablas un idioma tonal, ¡puede ser difícil distinguirlas! Pero en idiomas tonales, como el zapoteco de Santiago Laxopa, esto es sólo una parte más del habla diario.</p>
-						<p>Este juego fue creado por Nido de Lenguas, una colaboración entre <a href="http://scsenderos.org/" target="null">Senderos</a> y lingüistas de la Universidad de California, Santa Cruz. Nuestra misión es compartir la belleza y valor de los idiomas oaxaqueños como el zapoteco de Santiago Laxopa. Visita <a href="https://wlma.ucsc.edu/nidodelenguas/" target="null">nuestro sitio</a> para aprender más, y registrarte para clases gratuitas sobre el zapoteco de Santiago Laxopa.</p>
+						<p>How did you do? Was it hard to hear the melodies? If you don't speak a language with tone, it can be difficult to tell the difference between one melody or another! But in languages with tone like Santiago Laxopa Zapotec, it's just another part of daily language use.</p>
+						<p>This game was put together by Nido de Lenguas, a collaboration between <a href="http://scsenderos.org/" target="null">Senderos</a> and linguists at UC Santa Cruz. The recordings you heard during this game were made by Maestra Fe Silva-Robles of Santiago Laxopa and Santa Cruz, CA, the co-founder of our parent organization Senderos. Our mission is to share the beauty and value of Oaxacan languages like Santiago Laxopa Zapotec. Visit <a href="https://wlma.ucsc.edu/nidodelenguas/" target="null">our website</a> to learn more, and sign up for free classes in Santiago Laxopa Zapotec.</p>
+						<p>These materials are licensed under a Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License. You are free to use them for any noncommercial purpose, as long as you attribute them to Nido de Lenguas.</p>
 						</div>
 
 					</div>

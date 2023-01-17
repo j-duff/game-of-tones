@@ -111,18 +111,7 @@ label {
 	background-color: #FEB2E0;
 	padding: 5px;
 }
-a:link {
-	color: #005581;
-	font-size: 18px;
-}
-a:visited {
-	color: #005581;
-	font-size: 18px;
-}
-a:hover {
-	color: #72CDF4;
-	font-size: 18px;
-}
+
 .clear {
 	clear:both;
 	height:35px;
