@@ -1,18 +1,18 @@
-# Game of Tones - Markdown
+# Game of Tones - Documentation
 
 ### Getting Started
 
-This is a tutorial document for development of interactive, web-hosted Game of Tones games that explore the basic tonal systems of Oaxacan languages (Santiago Laxopa Zapotec, San Martín Peras Mixtec), as part of the outreach efforts of Nido de Lenguas at UC Santa Cruz.
+This is a tutorial document for development of interactive, web-hosted Game of Tones games that explore basic tonal systems. The game was originally developed for Oaxacan languages (Santiago Laxopa Zapotec, San Martín Peras Mixtec), as part of the outreach efforts of Nido de Lenguas at UC Santa Cruz.
 
 The TEMPLATE folder contains a number of documents that are ready to use, and require only minimal editing to develop a Game of Tones for the language of interest. The 'img' and 'mp3' folders contain images and audio files (respectively) to use for the playable cards that are dragged and dropped in the game itself. Before getting started, it can be helpful to add your image and audio files to these folders to reference them in the html portions of the game. The 'GoT_Styles.css' document contains all of the styling specifications, which can be freely edited (or replaced entirely) depending on your design preferences.
 
-For the most part, the only files that will require editing are the html files that run each round of the game. These html files reference corresponding JavaScript files, which contain the functions that generate the game cards with appropriate attributes to drag and drop, and three buttons that allow players to restart the game, check their answers, or show the answers and move on to subsequent rounds. These js files allow for the core functions of the current version of the game, and for the most part, should not be edited. That said, more seasoned programmers may feel comfortable editing and developing these files further as they see fit (especially considering that this game was not developed by computer scientists, and can likely be improved upon). This document will briefly cover the functionality of the js component, and highlight portions that can be edited when adding additional tonal patterns in later rounds of the game. 
+For the most part, the only files that will require editing are the html files that run each round of the game. These html files reference corresponding JavaScript files, which contain the functions that generate the game cards with appropriate attributes to drag and drop, and three buttons that allow players to restart the game, check their answers, or show the answers and move on to subsequent rounds. These js files allow for the core functions of the current version of the game, and for the most part, should not be edited. That said, more seasoned programmers may feel comfortable editing and developing these files further as they see fit (especially considering that this game was not developed by trained programmers, and can likely be improved upon). This document will briefly cover the functionality of the js component, and highlight portions that can be edited when adding additional tonal patterns in later rounds of the game. 
 
 ### JS Files
 
 Lines 1-32 initiate the function which generates the draggable and droppable cards, with positional attributes that track the position of the cards as they are dragged to different playable areas of the game. 
 
-A brief note on terminology: 'draggable' elements (or elements that can be dragged) are those which can be dragged when clicking and moving the element with the cursor, whereas 'droppable' elements are those onto which draggables are dropped (and *not* elements that can be dropped). In the context of this game, draggables are the playable vocabulary cards and droppables are the answer spots where players move and bin the draggable cards based on their tonal patterns.The documentation for the draggable and droppable interactions from jQuery UI 1.12 can be found [here](https://api.jqueryui.com/1.12/category/interactions/). 
+A brief note on terminology: 'draggable' elements (or elements that can be dragged) are those which can be dragged when clicking and moving the element with the cursor, whereas 'droppable' elements are those onto which draggables are dropped (and *not* elements that can be dropped). In the context of this game, draggables are the playable vocabulary cards and droppables are the answer spots where players move and bin the draggable cards based on their tonal patterns. The documentation for the draggable and droppable interactions from jQuery UI 1.12 can be found [here](https://api.jqueryui.com/1.12/category/interactions/). 
 
 ```js
 
@@ -188,7 +188,7 @@ Lines 35-110 initiate the Show Answer button, which moves all draggable cards to
 				});
 ```
 
-The main functionality of the Show Answer button comes from the if-statements, which checks the relevant states of the different elements. This round of the game involves only two tonal patterns (pattern1 and pattern2), and correspondingly, there are only two if-statements (one if-statement, and an else-if-statement) which move the two sets of cards to the two sets of matching answer spots. When developing the game further, you may want to add additional tonal patterns. To expand the Show Answer button for another tonal pattern, add another else-if-statement that checks the additional tonal pattern (pattern3):
+The main functionality of the Show Answer button comes from the if-statements, which check the relevant states of the different elements. This round of the game involves only two tonal patterns (pattern1 and pattern2), and correspondingly, there are only two if-statements (one if-statement, and an else-if-statement) which move the two sets of cards to the two sets of matching answer spots. When developing the game further, you may want to add additional tonal patterns. To expand the Show Answer button for another tonal pattern, add another else-if-statement that checks the additional tonal pattern (pattern3):
 
 ```js
 
@@ -273,7 +273,7 @@ To generate the draggable card deck with the vocabulary cards, create a `<div>` 
 
 	<div id="cards"></div>
 ```
-Each draggable card is generated individually, with appropriate attributes: `class = "draggable"` generates the card with the draggable attributes from the js file, "id" is simply the label for the card, "data-ans" encodes the fixed tonal pattern of the card itself (here, pattern1), and "data-loc" is left undefined, as this is the attribute which is updated when moved onto a droppable answer spot. The cards are formatted with a button that displays the word (here, xhua') and plays the corresponding audio file, which is retrieved using the 'getElementById' function. Finally, each card contains an image, which is retrieved from the 'img' folder and scaled appropriately. Each card is contained in an individual div element, so this formatting is repeated for every card used in the draggable card deck.
+Each draggable card is generated individually, with appropriate attributes: `class = "draggable"` generates the card with the draggable attributes from the js file, "id" is simply the label for the card, "data-ans" encodes the fixed tonal pattern of the card itself (here, pattern1), and "data-loc" is left undefined, as this is the attribute which is updated when moved onto a droppable answer spot. The cards are formatted with a button that displays the word (here, *xhua'*) and plays the corresponding audio file, which is retrieved using the `getElementById` function. Finally, each card contains an image, which is retrieved from the 'img' folder and scaled appropriately. Each card is contained in an individual div element, so this formatting is repeated for every card used in the draggable card deck.
 
 ```html
 
@@ -288,7 +288,7 @@ Each draggable card is generated individually, with appropriate attributes: `cla
 			</div>
 ```
 
-The droppable answer spots are similarly formatted, contained within another div element with the id "cards." Within this div, the droppable answer spots are formatted using div elements with `class = "drop-spots"` and an id corresponding to the tonal pattern (here, Melody #1). Create as many of these 'drop-spots' div elements as there are tonal patterns in the given round. The droppable answer spots are labeled for the player to group the cards based on their melody (here, Falling Melody). Each individual card spot is generated with a div element with `class = "droppable"`, generating a droppable card with the relevant attributes from the js file, and the fixed tonal pattern attribute "data-ans" (here, pattern1). This formatting is repeated for every droppable answer card, corresponding to the number of draggable vocabulary cards that bear the same tonal pattern.
+The droppable answer spots are similarly formatted, contained within another div element with the id "cards." Within this div, the droppable answer spots are formatted using div elements with `class = "drop-spots"` and an id corresponding to the tonal pattern (here, *Melody #1*). Create as many of these 'drop-spots' div elements as there are tonal patterns in the given round. The droppable answer spots are labeled for the player to group the cards based on their melody (here, Falling Melody). Each individual card spot is generated with a div element with `class = "droppable"`, generating a droppable card with the relevant attributes from the js file, and the fixed tonal pattern attribute "data-ans" (here, *pattern1*). This formatting is repeated for every droppable answer card, corresponding to the number of draggable vocabulary cards that bear the same tonal pattern.
 
 ```html
 
