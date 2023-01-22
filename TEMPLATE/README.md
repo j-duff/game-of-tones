@@ -1,20 +1,20 @@
-# Game of Tones
+# Game of Tones - Documentation
 
 ### Getting Started
 
-This is a tutorial document for development of interactive, web-hosted Game of Tones games that explore the basic tonal systems of Oaxacan languages (Santiago Laxopa Zapotec, San Martín Peras Mixtec), as part of the outreach efforts of Nido de Lenguas at UC Santa Cruz.
+This is a tutorial document for development of interactive, web-hosted Game of Tones games that explore basic tonal systems. The game was originally developed for Oaxacan languages (Santiago Laxopa Zapotec, San Martín Peras Mixtec), as part of the outreach efforts of Nido de Lenguas at UC Santa Cruz.
 
-This guide goes into some fine-grained details about how the game works under the hood. If you want a step-by-step guide that will take you through how to plug in your own content into the game template, without having to understand the rest of the code, take a look at the Quick Start Guide, also in this folder (`QuickStartGuide.md`).
+This guide goes into some fine-grained details about how the game works under the hood. If you want a step-by-step guide that will take you through how to plug in your own content into the game template, without having to understand the rest of the code, take a look at the Quick Start Guide in the main folder (`QuickStartGuide.md`).
 
-The `TEMPLATE/` folder contains a number of documents that are ready to use, and require only minimal editing to develop a Game of Tones for the language of interest. The `img/` and `mp3/` folders contain images and audio files (respectively) to use for the playable cards that are dragged and dropped in the game itself. Before getting started, it can be helpful to add your image and audio files to these folders to reference them in the html portions of the game. The `GoT_Styles.css` document contains all of the styling specifications, which can be freely edited (or replaced entirely) depending on your design preferences.
+The TEMPLATE folder contains a number of documents that are ready to use, and require only minimal editing to develop a Game of Tones for the language of interest. The `img/` and `mp3/` folders contain images and audio files (respectively) to use for the playable cards that are dragged and dropped in the game itself. Before getting started, it can be helpful to add your image and audio files to these folders to reference them in the html portions of the game. The `GoT_Styles.css` document contains all of the styling specifications, which can be freely edited (or replaced entirely) depending on your design preferences.
 
-For the most part, the only files that will require editing are the html files that run each round of the game. These html files reference corresponding JavaScript files, which contain the functions that generate the game cards with appropriate attributes to drag and drop, and three buttons that allow players to restart the game, check their answers, or show the answers and move on to subsequent rounds. These js files allow for the core functions of the current version of the game, and for the most part, should not be edited. That said, more seasoned programmers may feel comfortable editing and developing these files further as they see fit (especially considering that this game was not developed by computer scientists, and can likely be improved upon). This document will briefly cover the functionality of the js component, and highlight portions that can be edited when adding additional tonal patterns in later rounds of the game. 
+For the most part, the only files that will require editing are the html files that run each round of the game. These html files reference corresponding JavaScript files, which contain the functions that generate the game cards with appropriate attributes to drag and drop, and three buttons that allow players to restart the game, check their answers, or show the answers and move on to subsequent rounds. These js files allow for the core functions of the current version of the game, and for the most part, should not be edited. That said, more seasoned programmers may feel comfortable editing and developing these files further as they see fit (especially considering that this game was not developed by trained programmers, and can likely be improved upon). This document will briefly cover the functionality of the js component, and highlight portions that can be edited when adding additional tonal patterns in later rounds of the game. 
 
 ### JS Files
 
 Lines 1-32 initiate the function which generates the draggable and droppable cards, with positional attributes that track the position of the cards as they are dragged to different playable areas of the game. 
 
-A brief note on terminology: 'draggable' elements (or elements that can be dragged) are those which can be dragged when clicking and moving the element with the cursor, whereas 'droppable' elements are those onto which draggables are dropped (and *not* elements that can be dropped). In the context of this game, draggables are the playable vocabulary cards and droppables are the answer spots where players move and bin the draggable cards based on their tonal patterns.The documentation for the draggable and droppable interactions from jQuery UI 1.12 can be found [here](https://api.jqueryui.com/1.12/category/interactions/). 
+A brief note on terminology: 'draggable' elements (or elements that can be dragged) are those which can be dragged when clicking and moving the element with the cursor, whereas 'droppable' elements are those onto which draggables are dropped (and *not* elements that can be dropped). In the context of this game, draggables are the playable vocabulary cards and droppables are the answer spots where players move and bin the draggable cards based on their tonal patterns. The documentation for the draggable and droppable interactions from jQuery UI 1.12 can be found [here](https://api.jqueryui.com/1.12/category/interactions/). 
 
 ```js
 
@@ -53,7 +53,7 @@ A brief note on terminology: 'draggable' elements (or elements that can be dragg
     			} );
 ```
 
-The positional attributes of the cards are necessary for tracking the position of the draggable cards, which allows for the functionality of the three buttons and to confirm correct answers/reject incorrect answers. Essentially, each draggable and droppable element contain fixed attributes which correspond to their tonal pattern (e.g. `pattern1`). When a draggable is moved onto a droppable element, an unvalued attribute of the draggable is updated with the fixed tonal pattern attribute of the droppable element. Lines 173-182 contain the 'handleDropEvent' function that updates these relevant attributes when a draggable element is moved onto a droppable.
+The positional attributes of the cards are necessary for tracking the position of the draggable cards, which allows for the functionality of the three buttons and to confirm correct answers/reject incorrect answers. Essentially, each draggable and droppable element contain fixed attributes which correspond to their tonal pattern (e.g. pattern1). When a draggable is moved onto a droppable element, an unvalued attribute of the draggable is updated with the fixed tonal pattern attribute of the droppable element. Lines 173-182 contain the `handleDropEvent` function that updates these relevant attributes when a draggable element is moved onto a droppable.
 
 ```js
 
@@ -190,9 +190,10 @@ Lines 35-110 initiate the Show Answer button, which moves all draggable cards to
 				});
 ```
 
-The main functionality of the Show Answer button comes from the if-statements, which checks the relevant states of the different elements. This round of the game involves only two tonal patterns (`pattern1` and `pattern2`), and correspondingly, there are only two if-statements (one if-statement, and an else-if-statement) which move the two sets of cards to the two sets of matching answer spots. When developing the game further, you may want to add additional tonal patterns. To expand the Show Answer button for another tonal pattern, add another else-if-statement that checks the additional tonal pattern (pattern3):
+The main functionality of the Show Answer button comes from the if-statements, which check the relevant states of the different elements. This round of the game involves only two tonal patterns (`pattern1` and `pattern2`), and correspondingly, there are only two if-statements (one if-statement, and an else-if-statement) which move the two sets of cards to the two sets of matching answer spots. When developing the game further, you may want to add additional tonal patterns. To expand the Show Answer button for another tonal pattern, add another else-if-statement that checks the additional tonal pattern (`pattern3`):
 
 ```js
+
 						else if (ansAttr == 'pattern3' && dragCard.attr("data-loc") != ansAttr){					
 								$("#r1 .droppable").each(function(index){
 									var drop = $(this);
@@ -218,6 +219,7 @@ Append this else-if-statement within the scope of the Show Answer button, and re
 Finally, Lines 112-135 initiate the Restart/Reset button, which reverts all moved draggable cards to their original positions in the card deck.
 
 ```js
+
 				//Restart button - moves all of the cards back to their original positions in the card deck
 				$("#btnReset1").click(function() {
 					
@@ -260,11 +262,69 @@ The head portion of the html files contain the initializing information for the 
 		<script src = "round1.js"></script>
 ```
 
-The body of the html contains several containers that format the game. Within these containers, you'll need to add your audio files, making reference to their location in the `mp3/` folder of the directory. For example, the audio corresponding to the SLZ word for corn is labeled `corn.mp3` in the `mp3/` folder, and this location is referenced as the source (src) for the audio. The id `audio-corn` can be referenced later when creating the 'corn' card which will play the `corn.mp3` audio. 
+The body of the html contains several containers that format the game. Within these containers, you'll need to add your audio files, making reference to their location in the 'mp3' folder of the directory. For example, the audio corresponding to the SLZ word for corn is labeled 'corn.mp3' in the 'mp3' folder, and this location is referenced as the source (src) for the audio. The id 'audio-corn' can be referenced later when creating the 'corn' card which will play the 'corn.mp3' audio. 
 
 ```html
 
      <audio id="audio-corn" src="mp3/corn.mp3"></audio>
 ```
 
-MORE TO COME!
+To generate the draggable card deck with the vocabulary cards, create a `<div>` with the id "cards." Within this div element, we'll generate all of the draggable cards for the current round.
+
+```html
+
+	<div id="cards"></div>
+```
+Each draggable card is generated individually, with appropriate attributes: `class = "draggable"` generates the card with the draggable attributes from the js file, "`id`" is simply the label for the card, "`data-ans`" encodes the fixed tonal pattern of the card itself (here, `pattern1`), and "`data-loc`" is left undefined, as this is the attribute which is updated when moved onto a droppable answer spot. The cards are formatted with a button that displays the word (here, *xhua'*) and plays the corresponding audio file, which is retrieved using the `getElementById` function. Finally, each card contains an image, which is retrieved from the `img/` folder and scaled appropriately. Each card is contained in an individual `div` element, so this formatting is repeated for every card used in the draggable card deck.
+
+```html
+
+			<!--EDIT HERE: define the attributes of the card (class, id), including the type of melody pattern (here, data-ans = 'pattern1')-->
+			<div class="draggable" id="card-corn" data-ans="pattern1" data-loc=""> 
+									
+				<!--each card has a button which displays the word and plays the corresponding audio when clicked-->
+				<button onclick="document.getElementById('audio-corn').play()">xhua'</button> <br>
+									
+				<!--assign the card an image corresponding with the audio (adjust size if necessary)-->
+				<img src = "img/corn.png" style="width:90px;margin:8px 0px 0px 0px"> <br>
+			</div>
+```
+
+The droppable answer spots are similarly formatted, contained within another `div` element with the `id` "cards." Within this `div`, the droppable answer spots are formatted using `div` elements with `class = "drop-spots"` and an `id` corresponding to the tonal pattern (here, *Melody #1*). Create as many of these '`drop-spots`' div elements as there are tonal patterns in the given round. The droppable answer spots are labeled for the player to group the cards based on their melody (here, Falling Melody). Each individual card spot is generated with a `div` element with `class = "droppable"`, generating a droppable card with the relevant attributes from the js file, and the fixed tonal pattern attribute "`data-ans`" (here, *pattern1*). This formatting is repeated for every droppable answer card, corresponding to the number of draggable vocabulary cards that bear the same tonal pattern.
+
+```html
+
+			<div class= "drop-spots" id ="Melody #1">
+				<h4> Falling Melody </h4>
+				<div class="droppable" data-ans="pattern1"> </div>
+				<div class="droppable" data-ans="pattern1"> </div>
+				<div class="droppable" data-ans="pattern1"> </div>
+			</div>
+```
+
+The following `div` elements contain the three in-game buttons (Restart, Check Your Answer, and Show Answer) and the various messages that surface upon completion of the game, inclduing the textual explanation of the answers and a link to continue onto the next round. The text within these components can be freely edited, but their different `id`s are referenced in the js files, and changing these `id`s in the html requires identical changes in the js scripts. These final components are formatted within different containers to be centered at the bottom of the screen, and can be edited in the css style sheet. 
+
+```html
+
+				<!--display a message upon correct completion of the game-->
+				<div id="congratsContainer">
+					<label id="congratsLabel1" style="display: none">Great Job! All of your answers are correct!</label>
+				</div>
+							
+				<!--textual explanation of the answers displayed upon completion of the game-->
+				<div id="congratsContainer"><label id="answerp1" style="display: none">The words <em>beku'</em> "dog", <em>xhua'</em> "corn", and <em>xhile'</em> "sheep", all have the same melody, that starts high and ends low. <br> The words <em>beye'</em> "snow", <em>lage'</em> "leaf", and <em>ya'ado</em> "mountain" all have a different melody, that stays flat and low.</label></div>
+				
+				<!--link to Round2 html displayed upon completion of the game-->
+				<div id="congratsContainer">
+					<a href="round2-template.html" id="ContBtn1" style="display: none">Click Here to Continue</a>
+				</div>
+							
+				<!--centered container for the buttons available while playing the game-->
+				<div id="btnContainer">								
+					<button id = "btnReset1">Restart</button>								
+					<button id = "btnCheck1">Check Your Answer</button>								
+					<button id = "btnShow1">Show The Answer</button>
+				</div>
+```
+
+And those are the basics of making your own Game of Tones! For the most part, you can use this template as is, editing the audio/image files and text as necessary for the language of interest. As always, there are many components and labels that are cross-referenced across the css, js, and html files, and a small typo can derail the functionality of the game. There is also much room for improvement, so feel free to add new buttons or features if you're comfortable making those changes. To this point, it should be noted that the current implementation of this game is not mobile-friendly, but can be edited with different librarys to enable mobile functionality. We hope that this template and document are helpful in creating games for studying vocabulary and lexical tones across languages!
